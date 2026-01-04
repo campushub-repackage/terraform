@@ -827,9 +827,8 @@ module "campushub_policies" {
     }
 
     # campushub-git-actions-policy
-    # Campus Hub Git Actions Policy
     git_actions_policy = {
-      name = "campushub-lambda-policy"
+      name = "campushub-git-actions-policy"
       policy_json = {
         Version = "2012-10-17"
         Statement = [
