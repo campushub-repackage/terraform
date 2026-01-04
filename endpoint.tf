@@ -30,7 +30,7 @@ resource "aws_vpc_endpoint" "dynamodb_gateway" {
   }
 }
 
-# STS VPC Endpoint (IRSA용 - 필수)
+# STS VPC Endpoint (IRSA용)
 resource "aws_vpc_endpoint" "sts" {
   vpc_id              = module.vpc.vpc_id
   service_name        = "com.amazonaws.${var.region}.sts"
@@ -48,7 +48,7 @@ resource "aws_vpc_endpoint" "sts" {
   }
 }
 
-# Secrets Manager VPC Endpoint (ESO용 - 필수)
+# Secrets Manager VPC Endpoint (ESO용)
 resource "aws_vpc_endpoint" "secretsmanager" {
   vpc_id              = module.vpc.vpc_id
   service_name        = "com.amazonaws.${var.region}.secretsmanager"
