@@ -4,7 +4,7 @@ data "aws_security_group" "default" {
 }
 
 module "sg_nlb" {
-  source      = "./modules/security-group"
+  source      = "./modules/terraform-aws-securitygroup"
   name        = "campushub-sg-NLB"
   description = "for NLB Server"
   vpc_id      = module.vpc.vpc_id
@@ -21,7 +21,7 @@ module "sg_nlb" {
 }
 
 module "sg_cluster" {
-  source      = "./modules/security-group"
+  source      = "./modules/terraform-aws-securitygroup"
   name        = "campushub-sg-cluster"
   description = "for EKS Cluster API Server"
   vpc_id      = module.vpc.vpc_id
@@ -35,7 +35,7 @@ module "sg_cluster" {
 }
 
 module "sg_nodegroup" {
-  source      = "./modules/security-group"
+  source      = "./modules/terraform-aws-securitygroup"
   name        = "campushub-sg-nodegroup"
   description = "for EKS Worker Nodes"
   vpc_id      = module.vpc.vpc_id
@@ -84,7 +84,7 @@ resource "aws_ec2_tag" "sg_nodegroup_discovery" {
 
 # Aurora 보안그룹 생성 (EKS 워커 노드에서만 접근)
 module "sg_aurora" {
-  source      = "./modules/security-group"
+  source      = "./modules/terraform-aws-securitygroup"
   name        = "campushub-sg-aurora"
   description = "for aurora Server"
   vpc_id      = module.vpc.vpc_id
@@ -121,7 +121,7 @@ resource "aws_security_group_rule" "aurora_from_bastion" {
 
 # VPC Endpoints 보안그룹 생성 (EKS 워커 노드에서만 접근)
 module "sg_vpc_endpoints" {
-  source      = "./modules/security-group"
+  source      = "./modules/terraform-aws-securitygroup"
   name        = "campushub-sg-vpc-endpoints"
   description = "for VPC Endpoints"
   vpc_id      = module.vpc.vpc_id

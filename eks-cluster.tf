@@ -1,5 +1,5 @@
 module "eks-cluster" {
-  source = "./modules/eks-cluster"
+  source = "./modules/terraform-aws-cluster"
 
   cluster_name        = var.cluster_name
   cluster_version     = "1.32"

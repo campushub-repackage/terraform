@@ -3,7 +3,6 @@ locals {
   bastion_subnet_id = module.vpc.public_subnet_ids[0]  # 첫 번째 public 서브넷 사용
 }
 
-# Bastion 서브넷 정보는 더 이상 필요하지 않음 (루트 볼륨 사용)
 # 보안그룹 생성
 resource "aws_security_group" "campushub-sg-bastion" {
   name        = "campushub-sg-bastion"

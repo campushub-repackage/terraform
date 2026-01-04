@@ -3,7 +3,7 @@ resource "aws_eip" "nat" {
 }
 
 module "vpc" {
-  source      = "./modules/vpc"
+  source      = "./modules/terraform-aws-vpc"
   name_prefix = "campushub"
   vpc_cidr    = "10.0.0.0/16"
   nat_eip_id  = aws_eip.nat.id
