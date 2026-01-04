@@ -318,9 +318,9 @@ module "campushub_policies" {
         }
     }
 
-    # campushub-karpenter-policy
+    # campushub-karpenterNode-policy
     karpenter_policy = {
-      name = "campushub-karpenter-policy"
+      name = "campushub-karpenterNode-policy"
       policy_json = {
         Version = "2012-10-17"
         Statement : [

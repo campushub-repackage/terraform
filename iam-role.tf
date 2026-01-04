@@ -268,7 +268,7 @@ module "external_dns_role" {
     }]
   })
   managed_policy_arns = [
-    aws_iam_policy.external_dns_policy.arn
+    aws_iam_policy.campushub-external-dns-policy.arn
   ]
 }
 
@@ -323,7 +323,7 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
 
 # Lambda 커스텀 정책 연결
 resource "aws_iam_role_policy_attachment" "lambda_custom_policy" {
-  policy_arn = aws_iam_policy.lambda_execution_policy.arn
+  policy_arn = aws_iam_policy.campushub-lambda-policy.arn
   role       = aws_iam_role.campushub_lambda_role.name
 }
 

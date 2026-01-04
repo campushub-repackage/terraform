@@ -5,8 +5,8 @@ resource "aws_vpc_endpoint" "s3_gateway" {
   vpc_endpoint_type = "Gateway"
 
   route_table_ids = [
-    module.terraform-aws-network.public_route_table_id,
-    module.terraform-aws-network.private_route_table_id
+    module.aws_route_table.public_route_table_id,
+    module.aws_route_table.private_route_table_id
   ]
 
   tags = {
@@ -21,8 +21,8 @@ resource "aws_vpc_endpoint" "dynamodb_gateway" {
   vpc_endpoint_type = "Gateway"
 
   route_table_ids = [
-    module.terraform-aws-network.public_route_table_id,
-    module.terraform-aws-network.private_route_table_id
+    module.aws_route_table.public_route_table_id,
+    module.aws_route_table.private_route_table_id
   ]
 
   tags = {
@@ -36,8 +36,8 @@ resource "aws_vpc_endpoint" "sts" {
   service_name        = "com.amazonaws.${var.region}.sts"
   vpc_endpoint_type   = "Interface"
   subnet_ids          = [
-    module.terraform-aws-network.private_subnet_ids_by_az_index[0][0],
-    module.terraform-aws-network.private_subnet_ids_by_az_index[1][0]
+    module.aws_route_table.private_subnet_ids_by_az_index[0][0],
+    module.aws_route_table.private_subnet_ids_by_az_index[1][0]
   ]
   
   security_group_ids = [module.sg_vpc_endpoints.security_group_id]
@@ -54,8 +54,8 @@ resource "aws_vpc_endpoint" "secretsmanager" {
   service_name        = "com.amazonaws.${var.region}.secretsmanager"
   vpc_endpoint_type   = "Interface"
   subnet_ids          = [
-    module.terraform-aws-network.private_subnet_ids_by_az_index[0][0],
-    module.terraform-aws-network.private_subnet_ids_by_az_index[1][0]
+    module.aws_route_table.private_subnet_ids_by_az_index[0][0],
+    module.aws_route_table.private_subnet_ids_by_az_index[1][0]
   ]
   
   security_group_ids = [module.sg_vpc_endpoints.security_group_id]
