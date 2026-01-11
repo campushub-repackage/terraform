@@ -17,33 +17,6 @@ module "eks_cluster_role" {
   ]
 }
 
-# campus-hub-git-role
-module "campus-hub-git-role" {
-  source = "./modules/terraform-aws-role"
-  role_name = "campus-hub-git-role"
-  assume_role_policy = jsonencode({
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Effect": "Allow",
-			"Principal": {
-				"Federated": "arn:aws:iam::${var.aws_account_id}:oidc-provider/token.actions.githubusercontent.com"
-			},
-			"Action": "sts:AssumeRoleWithWebIdentity",
-			"Condition": {
-				"StringEquals": {
-					"token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
-				},
-				"StringLike": {
-					"token.actions.githubusercontent.com:sub": "repo:${var.github_org}/*"
-				}
-			}
-		}
-	]
-  })
-  managed_policy_arns = [ module.campushub_policies.arns["campushub-git-actions-policy"] ]
-}
-
 # campushub-eso-role
 module "campushub-eso-role" {
   source = "./modules/terraform-aws-role"

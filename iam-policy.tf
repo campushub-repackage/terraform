@@ -826,52 +826,5 @@ module "campushub_policies" {
         ]
     })
     }
-
-    # campushub-git-actions-policy
-    git_actions_policy = {
-      name = "campushub-git-actions-policy"
-      policy_json = jsonencode({
-        Version = "2012-10-17"
-        Statement = [
-        {
-            Sid = "GetAuthorizationToken"
-            Effect = "Allow"
-            Action = "ecr:GetAuthorizationToken"
-            Resource = "*"
-        },
-        {
-            Sid = "Statement1"
-            Effect = "Allow"
-            Action = [
-            "ecr:BatchCheckLayerAvailability",
-            "ecr:InitiateLayerUpload",
-            "ecr:UploadLayerPart",
-            "ecr:CompleteLayerUpload",
-            "ecr:PutImage",
-            "ecr:PutImageTagMutability"
-            ]
-            Resource = [
-            "arn:aws:ecr:ap-northeast-2:569934397842:repository/campushub",
-            "arn:aws:ecr:ap-northeast-2:569934397842:repository/campushub/*"
-            ]
-        },
-        {
-            Effect = "Allow"
-            Action = [
-            "eks:DescribeCluster",
-            "eks:ListClusters"
-            ]
-            Resource = "*"
-        },
-        {
-            Effect = "Allow"
-            Action = [
-            "iam:PassRole"
-            ]
-            Resource = "arn:aws:iam::${var.aws_account_id}:role/${var.kubernetes_namespace}-*"
-        }
-        ]
-    })
-    }
   }
 }
